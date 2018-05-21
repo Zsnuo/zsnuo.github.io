@@ -1675,7 +1675,7 @@ pre .javascript .function {
   border-bottom-color: #555;
 }
 .sidebar a:hover {
-  color: #eee;
+  color: #222;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .sidebar {
@@ -1826,7 +1826,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #4208a3;
+  background: #6cffd0;
 }
 .links-of-blogroll {
   font-size: 13px;
