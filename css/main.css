@@ -284,8 +284,8 @@ a {
   word-wrap: break-word;
 }
 a:hover {
-  color: #ffc6d3;
-  border-bottom-color: #ffc6d3;
+  color: #222;
+  border-bottom-color: #222;
 }
 blockquote {
   margin: 0;
@@ -1826,7 +1826,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a326ff;
+  background: #4208a3;
 }
 .links-of-blogroll {
   font-size: 13px;
