@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[test]]></title>
     <url>%2F2018%2F05%2F20%2Ftest%2F</url>
-    <content type="text"><![CDATA[hellosec-hellohello $a+b$ 12int a=read(),b=read(); printf("%d\n",a+b);]]></content>
+    <content type="text"><![CDATA[hellosec-hellohello $a+b$ 12int a=read(),b=read(); printf("%d\n",a+b); 你好]]></content>
       <tags>
         <tag>zsn</tag>
         <tag>cyc</tag>
