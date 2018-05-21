@@ -1748,6 +1748,9 @@ pre .javascript .function {
   text-align: center;
   color: #ffc6d3;
   font-weight: 600;
+  margin-top: 3px;
+  color: #555;
+  font-size: 15px;
 }
 .site-description {
   margin-top: 0;
@@ -1823,7 +1826,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fffff5;
+  background: #282130;
 }
 .links-of-blogroll {
   font-size: 13px;
