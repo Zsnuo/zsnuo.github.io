@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[「Codeforces 963E」NN country]]></title>
+    <url>%2F2018%2F05%2F21%2Fcf983E%2F</url>
+    <content type="text"><![CDATA[Description In the NN country, there are n cities, numbered from 1 to n, and n−1 roads, connecting them. There is a roads path between any two cities. There are m bidirectional bus routes between cities. Buses drive between two cities taking the shortest path with stops in every city they drive through. Travelling by bus, you can travel from any stop on the route to any other. You can travel between cities only by bus. You are interested in q questions: is it possible to get from one city to another and what is the minimum number of buses you need to use for it? Input The first line contains a single integer n (2≤n≤2⋅105) — the number of cities. The second line contains n−1 integers p2,p3,…,pn (1≤pi&lt;i), where pi means that cities pi and i are connected by road. The third line contains a single integer m (1≤m≤2⋅105) — the number of bus routes. Each of the next m m lines contains 2 integers a and b (1≤a,b≤n, a≠b), meaning that there is a bus route between cities a and b. It is possible that there is more than one route between two cities. The next line contains a single integer q (1≤q≤2⋅105) — the number of questions you are interested in. Output Print the answer for each question on a separate line. If there is no way to get from one city to another, print −1. Otherwise print the minimum number of buses you have to use. Solution 题意：给定一棵 nnn 个点的树， mmm 条链， qqq 个询问，每次询问 aaa 到 bbb 之间的路径最少可用几条给定链完全覆盖，无解输出 −1-1−1 。 分析： 对于每一条 aaa 与bbb 间的路径，都可拆分为 aaa 到 lcalcalca 的路径和 bbb 到 lcalcalca 的路径 采用贪心策略， low[x][i]low[x][i]low[x][i] 表示从 xxx 点出发向上选择不超过 2i2^i2i 条链可抵达的深度最浅的点。这时对于每一个询问可将询问的两个端点修改为利用贪心策略跳到的深度大于 lcalcalca 且深度最小的节点，并记录下答案，这个过程可以用倍增完成。注意特判端点即 lcalcalca 的情况。 然后出现两种情况。若修改后的两个端点出现在同一条给定链上，答案为原答案 +1+1+1 ，否则答案为原答案 +2+2+2 。问题模型转换为，每次询问一个点对是否出现在同一条给定链上。记录下 dfsdfsdfs 序，在深搜过程中利用树状数组统计即可。 时间复杂度 O(nlogn)O(nlogn)O(nlogn) 。 fY(y)=fX[h(y)]∣h′(y)∣=fX[h(y)]h′(y)=1θe−xθ[dxdy(−θln(1−y))]=1θe−−θln(1−y)θθ1−y=1θeln(1−y)θ1−y=1−yθθ1−y=1\begin{aligned} f_Y(y) &amp; = f_X[h(y)]|h&#x27;(y)| \\ &amp; = f_X[h(y)]h&#x27;(y) \\ &amp; = \frac{1}{\theta}e^{-\frac{x}{\theta}}[\frac{dx}{dy}(-\frac{\theta}{ln(1-y)})] \\ &amp; = \frac{1}{\theta}e^{-\frac{-\frac{\theta}{ln(1-y)}}{\theta}}\frac{\theta}{1-y} \\ &amp; = \frac{1}{\theta}e^{ln(1-y)}\frac{\theta}{1-y} \\ &amp; = \frac{1-y}{\theta}\frac{\theta}{1-y} \\ &amp; = 1 \end{aligned} fY​(y)​=fX​[h(y)]∣h′(y)∣=fX​[h(y)]h′(y)=θ1​e−θx​[dydx​(−ln(1−y)θ​)]=θ1​e−θ−ln(1−y)θ​​1−yθ​=θ1​eln(1−y)1−yθ​=θ1−y​1−yθ​=1​ xix_i xi​ xix^i xi]]></content>
+      <tags>
+        <tag>树状数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[test]]></title>
     <url>%2F2018%2F05%2F20%2Ftest%2F</url>
-    <content type="text"><![CDATA[hellosec-hellohello $a+b$ $x_i$ 12int a=read(),b=read(); printf("%d\n",a+b); 你好]]></content>
+    <content type="text"><![CDATA[hello sec-hello hello a+ba+ba+b xix_ixi​ 12int a=read(),b=read(); printf("%d\n",a+b); 你好]]></content>
       <tags>
         <tag>zsn</tag>
         <tag>cyc</tag>
@@ -12,6 +20,6 @@
   <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2018%2F05%2F20%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start Create a new post 1$ hexo new "My New Post" More info: Writing Run server 1$ hexo server More info: Server Generate static files 1$ hexo generate More info: Generating Deploy to remote sites 1$ hexo deploy More info: Deployment]]></content>
   </entry>
 </search>
