@@ -1826,7 +1826,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffffa1;
+  background: #cf1dbf;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2285,9 +2285,9 @@ pre .javascript .function {
   font-size: 16px;
 }
 .local-search-popup .search-keyword {
-  border-bottom: 1px dashed #f00;
+  border-bottom: 1px dashed #ff4771;
   font-weight: bold;
-  color: #f00;
+  color: #ff4771;
 }
 .local-search-popup .local-search-header {
   padding: 5px;
