@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[「51nod 1055」最长等差数列]]></title>
+    <url>%2F51nod1055%2F</url>
+    <content type="text"><![CDATA[NNN 个不同的正整数，找出由这些数组成的最长的等差数列。 Constraints $ n \leq 10000$ Solution dp(i,j)dp(i,j)dp(i,j) 表示等差数列最后的两个数字的位置。 转移的时候考虑先固定 jjj 的位置，然后分别向两边扫寻找满足 ai+ak=2⋅aja_i+a_k=2\cdot a_jai​+ak​=2⋅aj​ 的数对 (i,k)(i,k)(i,k) ，并用 dp(i,j)+1dp(i,j)+1dp(i,j)+1 来更新 dp(j,k)dp(j,k)dp(j,k) 。 考虑到空间问题，需要使用 short int 。时间复杂度 O(n2)O(n^2)O(n2) 。 Code 123456789101112131415161718192021222324252627282930313233343536373839404142#include&lt;cstdio&gt;#include&lt;algorithm&gt; #include&lt;cstring&gt;#define LL long longusing namespace std;const int N=1e4+5;int n,a[N];short int t,ans=2,dp[N][N];int read()&#123; int x=0,f=1;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-1;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')&#123;x=x*10+c-'0';c=getchar();&#125; return x*f;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++)a[i]=read(); sort(a+1,a+n+1); for(int i=1;i&lt;=n;i++) for(int j=i+1;j&lt;=n;j++) dp[i][j]=2; for(int j=2;j&lt;n;j++) &#123; int i=j-1,k=j+1; while(i&gt;=1&amp;&amp;k&lt;=n) &#123; if(a[i]+a[k]&lt;2*a[j])k++; else if(a[i]+a[k]&gt;2*a[j])i--; else &#123; t=dp[i][j]+1; dp[j][k]=max(dp[j][k],t); ans=max(ans,t); i--;k++; &#125; &#125; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
+      <tags>
+        <tag>普通dp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[「雅礼集训 2018-04-03」Problem B]]></title>
     <url>%2Fyali0403b%2F</url>
     <content type="text"><![CDATA[求有多少 NNN 个的竞赛图包含至少一个长度为 KKK 的简单环, 输出答案模 109+710^9+7109+7 的结果。 竞赛图: 任意两个点之间都有一条有向边的图。 简单环: 不经过重复节点的回路。 Constraints n≤5000n \leq 5000n≤5000 Solution 首先有一个定理：竞赛图中如果包含一个大小大于等于 kkk 的强连通分量，则这个强连通分量内包含长度为 [3,k][3,k][3,k] 的简单环。则问题转化为：求至少有一个强连通分量大小大于等于 kkk 的方案数。 令 pip_{i}pi​ 表示 iii 个点的竞赛图方案数，则显然有 pi=2i⋅(i−1)2p_{i}=2^{\frac{i\cdot (i-1)}{2}}pi​=22i⋅(i−1)​ 。 令 gig_{i}gi​ 表示 iii 个点的强连通分量且为竞赛图的方案数，则显然有 gi=pi−∑j=1i−1(ij)⋅gj⋅pi−jg_{i}=p_{i}-\sum _{j=1}^{i-1}\binom{i}{j}\cdot g_{j}\cdot p_{i-j}gi​=pi​−∑j=1i−1​(ji​)⋅gj​⋅pi−j​ 。 令 fif_{i}fi​ 表示当前用了 iii 个点，不包含大小大于等于kkk的强连通分量的方案数。枚举最后一个强连通分量的大小进行转移，可得： fi=∑j=1min(k−1,i)(ij)⋅gj⋅fi−jf_{i}=\sum _{j=1}^{min(k-1,i)}\binom{i}{j}\cdot g_{j}\cdot f_{i-j} fi​=j=1∑min(k−1,i)​(ji​)⋅gj​⋅fi−j​ 则最终答案为 pn−fnp_{n}-f_{n}pn​−fn​ ，时间复杂度 O(n2)O(n^{2})O(n2) 。 Code 123456789101112131415161718192021222324252627282930313233343536373839404142#include&lt;cstdio&gt;#include&lt;algorithm&gt; #include&lt;cstring&gt;#define LL long longusing namespace std;const int N=5e3+5;const int mod=1e9+7;int n,k,C[N][N],g[N],p[N],f[N];int power(int a,int b)&#123; int ans=1; while(b) &#123; if(b&amp;1)ans=1ll*ans*a%mod; a=1ll*a*a%mod;b&gt;&gt;=1; &#125; return ans;&#125;int main()&#123; freopen("b.in","r",stdin); freopen("b.out","w",stdout); scanf("%d%d",&amp;n,&amp;k); for(int i=0;i&lt;=n;i++)C[i][0]=1; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=i;j++) C[i][j]=(C[i-1][j]+C[i-1][j-1])%mod; for(int i=1;i&lt;=n;i++)p[i]=power(2,i*(i-1)/2); g[1]=1; for(int i=3;i&lt;=n;i++) &#123; g[i]=p[i]; for(int j=1;j&lt;i;j++) g[i]=(g[i]-1ll*C[i][j]*g[j]%mod*p[i-j]%mod+mod)%mod; &#125; f[0]=1; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;k&amp;&amp;j&lt;=i;j++) f[i]=(f[i]+1ll*C[i][j]*g[j]%mod*f[i-j])%mod; printf("%d",(p[n]-f[n]+mod)%mod); return 0;&#125;]]></content>
       <tags>
-        <tag>排列组合</tag>
         <tag>普通dp</tag>
+        <tag>排列组合</tag>
       </tags>
   </entry>
   <entry>
