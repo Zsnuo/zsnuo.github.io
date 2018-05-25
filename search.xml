@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[「51nod 1510」最小化序列]]></title>
+    <url>%2F51nod1510%2F</url>
+    <content type="text"><![CDATA[现在有一个长度为 nnn 的数组 AAA ，另外还有一个整数 kkk 。数组下标从 111 开始。 现在你需要把数组的顺序重新排列一下使得下面这个的式子的值尽可能小。 ∑i=1n−k∣A[i]−A[i+k]∣\sum_{i=1}^{n-k}{|A[i]-A[i+k]|} i=1∑n−k​∣A[i]−A[i+k]∣ 特别的，你也可以不对数组进行重新排列。 Constraints $ 2\leq n\leq 3\cdot 10^5$ ， 1≤k≤min(5000,n−1)1 \leq k \leq min(5000,n-1)1≤k≤min(5000,n−1) Solution 观察可得式子实际上将 nnn 个数字分成了不相关的 kkk 组，其中有 nmodkn \bmod knmodk 组大小为 nk+1\frac{n}{k}+1kn​+1 ，剩余的长度为 nk\frac{n}{k}kn​ 。 将 AAA 数组排序后，贪心地得出每一组都是连续的一段，代价为最后一个数 −-− 第一个数。 令 f(i,j)f(i,j)f(i,j) 表示当前已有 iii 组较大的分组与 jjj 组较小的分组的最小代价，直接 dp 即可。 时间复杂度 O(k2)O(k^2)O(k2) 。 Code 1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;cstdio&gt;#include&lt;algorithm&gt; #include&lt;cstring&gt;#define LL long longusing namespace std;const int N=3e5+5;const int K=5e3+5;int lcnt,scnt,leng,seng;int n,k,t,a[N],f[K][K];int read()&#123; int x=0,f=1;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-1;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')&#123;x=x*10+c-'0';c=getchar();&#125; return x*f;&#125;void update(int &amp;a,int b)&#123; if(a==-1)a=b; else a=min(a,b);&#125;int main()&#123; n=read();k=read(); for(int i=1;i&lt;=n;i++)a[i]=read(); sort(a+1,a+n+1); lcnt=n%k;scnt=k-lcnt; leng=n/k+1;seng=n/k; memset(f,-1,sizeof(f)); f[0][0]=0; for(int i=0;i&lt;=lcnt;i++) for(int j=0;j&lt;=scnt;j++) &#123; if(f[i][j]==-1)continue; t=i*leng+j*seng; if(i!=lcnt)update(f[i+1][j],f[i][j]+a[t+leng]-a[t+1]); if(j!=scnt)update(f[i][j+1],f[i][j]+a[t+seng]-a[t+1]); &#125; printf("%d",f[lcnt][scnt]); return 0;&#125;]]></content>
+      <tags>
+        <tag>普通dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[「51nod 1519」拆方块]]></title>
+    <url>%2F51nod1519%2F</url>
+    <content type="text"><![CDATA[有 nnn 堆方块，第 iii 堆方块由 hih_ihi​ 个方块堆积而成。 接下来拆方块。一个方块称为内部方块当且仅当他的上下左右都是方块或者是地面。否则方块就是边界方块。每一次操作都要把边界方块拿掉。 问多少次操作之后所有方块会消失。 Constraints 1≤n≤1051 \leq n \leq 10^51≤n≤105 Solution 观察可得，每一轮进行的操作为 hi=min(hi−1,hi−1,hi+1)h_i=min(h_{i-1},h_i-1,h_{i+1})hi​=min(hi−1​,hi​−1,hi+1​) 。当一列方块被拆掉时，下一轮他的相邻两列中未被拆掉的列也会被拆掉。 从左往右和从右往左分别扫一遍，取 min 即是当前列被拆掉的操作次序。时间复杂度 O(n)O(n)O(n) 。 Code 123456789101112131415161718192021222324#include&lt;cstdio&gt;#include&lt;algorithm&gt; #include&lt;cstring&gt;#define LL long longusing namespace std;const int N=1e5+5;int n,ans,h[N],l[N],r[N];int read()&#123; int x=0,f=1;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-1;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')&#123;x=x*10+c-'0';c=getchar();&#125; return x*f;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++)h[i]=read(); l[1]=1;for(int i=2;i&lt;=n;i++)l[i]=min(l[i-1]+1,h[i]); r[n]=1;for(int i=n-1;i&gt;=1;i--)r[i]=min(r[i+1]+1,h[i]); for(int i=1;i&lt;=n;i++)ans=max(ans,min(l[i],r[i])); printf("%d",ans); return 0;&#125;]]></content>
+      <tags>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[「51nod 1055」最长等差数列]]></title>
     <url>%2F51nod1055%2F</url>
     <content type="text"><![CDATA[NNN 个不同的正整数，找出由这些数组成的最长的等差数列。 Constraints $ n \leq 10000$ Solution dp(i,j)dp(i,j)dp(i,j) 表示等差数列最后的两个数字的位置。 转移的时候考虑先固定 jjj 的位置，然后分别向两边扫寻找满足 ai+ak=2⋅aja_i+a_k=2\cdot a_jai​+ak​=2⋅aj​ 的数对 (i,k)(i,k)(i,k) ，并用 dp(i,j)+1dp(i,j)+1dp(i,j)+1 来更新 dp(j,k)dp(j,k)dp(j,k) 。 考虑到空间问题，需要使用 short int 。时间复杂度 O(n2)O(n^2)O(n2) 。 Code 123456789101112131415161718192021222324252627282930313233343536373839404142#include&lt;cstdio&gt;#include&lt;algorithm&gt; #include&lt;cstring&gt;#define LL long longusing namespace std;const int N=1e4+5;int n,a[N];short int t,ans=2,dp[N][N];int read()&#123; int x=0,f=1;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-1;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')&#123;x=x*10+c-'0';c=getchar();&#125; return x*f;&#125;int main()&#123; n=read(); for(int i=1;i&lt;=n;i++)a[i]=read(); sort(a+1,a+n+1); for(int i=1;i&lt;=n;i++) for(int j=i+1;j&lt;=n;j++) dp[i][j]=2; for(int j=2;j&lt;n;j++) &#123; int i=j-1,k=j+1; while(i&gt;=1&amp;&amp;k&lt;=n) &#123; if(a[i]+a[k]&lt;2*a[j])k++; else if(a[i]+a[k]&gt;2*a[j])i--; else &#123; t=dp[i][j]+1; dp[j][k]=max(dp[j][k],t); ans=max(ans,t); i--;k++; &#125; &#125; &#125; printf("%d\n",ans); return 0;&#125;]]></content>
@@ -48,8 +64,8 @@
     <url>%2Fyali0402c%2F</url>
     <content type="text"><![CDATA[Alice 和 Bob 在玩游戏。 有一棵 NNN 个节点的树， Alice 和 Bob 轮流操作，Alice 先手。 一开始树上所有节点都没有颜色，Alice 每次会选一个没有被染色的节点并把这个节点染成红色(不能不选)，Bob 每次会选一个没有被染色的节点并把这个节点染成蓝色(不能不选)。当有人操作不了时，游戏就终止了。 Alice 的最终得分为红色连通块的个数，Bob 的最终的分为蓝色连通块的个数。设 Alice 的得分为 KAK_AKA​ ，Bob 的得分为 KBK_BKB​，Alice 想让 KA−KBK_A-K_BKA​−KB​ 尽可能大，Bob 则想让 KA−KBK_A-K_BKA​−KB​ 尽可能小，假设两人都采取最优策略操作，那么 KA−KBK_A-K_BKA​−KB​ 会是多少。 这里指的连通块为一个点集 SSS，满足集合内点的颜色相同，且每个点都能只经过 SSS 内的点走到 SSS 内的其他点，而且如果将任意 u(u⊈S)u(u\nsubseteq S)u(u⊈S) 加入 SSS ，那么上述性质将不能被满足。 Constraints $ n \leq 10^5 $ Solution 显然，KAK_{A}KA​ 等于红色点数减去两端都为红色的边的数量，KBK_{B}KB​ 同理。两种颜色点数是确定的，问题转化为求两边同色的边数之差。对于一条边，将两个端点的点权 +1+1+1 ，若被 Alice 选择则将答案减去点权，否则加上点权。贪心可得，Alice 和 Bob 都会选择点权最小的结点。贪心计算出来的数字即为 ans⋅2ans\cdot 2ans⋅2 。 Code 12345678910111213141516171819202122232425262728293031#include&lt;cstdio&gt;#include&lt;algorithm&gt; #include&lt;cstring&gt;#define LL long longusing namespace std;const int N=1e5+5;int n,ans,u,v,deg[N];int read()&#123; int x=0,f=1;char c=getchar(); while(c&lt;'0'||c&gt;'9')&#123;if(c=='-')f=-1;c=getchar();&#125; while(c&gt;='0'&amp;&amp;c&lt;='9')&#123;x=x*10+c-'0';c=getchar();&#125; return x*f;&#125;int main()&#123; n=read();ans=(n&amp;1)*2; for(int i=1;i&lt;n;i++) &#123; u=read();v=read(); deg[u]++;deg[v]++; &#125; sort(deg+1,deg+n+1); for(int i=1;i&lt;=n;i++) &#123; if(i&amp;1)ans-=deg[i]; else ans+=deg[i]; &#125; printf("%d",ans/2); return 0;&#125;]]></content>
       <tags>
-        <tag>贪心</tag>
         <tag>模拟</tag>
+        <tag>贪心</tag>
       </tags>
   </entry>
   <entry>
